@@ -1,0 +1,2 @@
+2019-01-21 16:25:05,204 [localhost-startStop-2] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Closing WebApplicationContext for namespace 'springMVC-servlet': startup date [Sun Jan 20 17:43:01 CST 2019]; parent: Root WebApplicationContext
+2019-01-21 16:25:05,206 [localhost-startStop-2] [org.springframework.web.context.support.XmlWebApplicationContext] [INFO] - Closing Root WebApplicationContext: startup date [Sun Jan 20 17:43:00 CST 2019]; root of context hierarchy
