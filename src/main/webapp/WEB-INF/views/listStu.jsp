@@ -20,7 +20,7 @@
 </style>
 
 <div id="jz">
-<table  border='1' cellspacing='0'>
+<table  align="center"  cellspacing='0'>
     <form action="${pageContext.request.contextPath}/student/student" method="get" >
         <input type="submit" value="注册"/>
 
@@ -28,7 +28,7 @@
     </table>
 
 
-<table align="center" border='1' cellspacing='0'>
+<table align="center"  cellspacing='0'>
 <form action="${pageContext.request.contextPath}/student/listStudent" method="post">
 			<span>
 				姓名：<input name="name" value="${name }"/> 

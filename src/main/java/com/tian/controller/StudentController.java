@@ -3,6 +3,8 @@ package com.tian.controller;
 
 import com.tian.dao.StudentMapper;
 import com.tian.model.Student;
+import com.tian.service.StudentService;
+import com.tian.service.impl.StudentServiceImpl;
 import com.tian.util.DateTime;
 import com.tian.util.Page;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import java.util.Map;
 public class StudentController {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(StudentController.class);
     @Autowired
-    private StudentMapper studentService;
+    private StudentService studentService;
 
 
     /**
@@ -129,6 +131,8 @@ public class StudentController {
         studentService.updateStudent(student);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("b",student);
+        modelAndView.addObject("msgs","name.is.null");
+
         modelAndView.setViewName("redirect:/student/listStudent");
         return modelAndView;
 

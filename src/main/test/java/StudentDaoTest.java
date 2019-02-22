@@ -7,25 +7,26 @@ import com.tian.util.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)//为了让测试在Spring容器环境下执行
 @ContextConfiguration({"classpath:spring-mybatis.xml"})// 加载spring配置文件
 public class StudentDaoTest {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(StudentDaoTest.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(StudentService.class);
 
     @Resource
     private StudentMapper studentDao;
     @Resource
     private StudentService studentService;
+
 
     @Test
     public void testSelectStudentById()throws Exception{
@@ -120,4 +121,36 @@ public class StudentDaoTest {
         student.setUpdatedAt(DateTime.getTime());
         studentService.updateStudent(student);
     }
+
+    @Test
+    public void testAop(){
+        Integer id = 45;
+        System.out.println(studentService.deleteStudentById(id));
+    }
+
+    @Test
+    public void testSpringMessage(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+
+        // 获取MessageSource的Bean
+        MessageSource messageSource = ctx.getBean("resource",MessageSource.class);
+
+        //new GregorianCalendar().getTime() 当我们想要能够人为社会定时间时，就需要用到GregorianCalendar类
+        Object[ ] objects = {"fanbingbibng",new GregorianCalendar().getTime()};
+
+
+
+        String msg1 = messageSource.getMessage("greeting.common",objects,Locale.CHINESE);
+
+        String msg2 = messageSource.getMessage("greeting.morning",objects,Locale.US);
+
+        String msg3 = messageSource.getMessage("greeting.afternoon",objects,Locale.CHINESE);
+
+        System.out.println(msg1);
+        System.out.println(msg2);
+        System.out.println(msg3);
+
+
+    }
+
     }

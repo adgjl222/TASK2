@@ -41,6 +41,8 @@
 
     </select>
 
+
+
     <!-- 当有分页信息时候进行分页查询 -->
     <select id="list" resultMap="studentResultMap">
         SELECT * FROM student

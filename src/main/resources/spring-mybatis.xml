@@ -2,16 +2,56 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!-- 扫描service包下所有使用注解的类型 -->
-    <context:component-scan base-package="com.tian.service"/>
+
+
+            
+
+    <!-- 扫描tian包下所有使用注解的类型 -->
+    <context:component-scan base-package="com.tian"/>
+
+    <bean id="loggingAspect" class="com.tian.aaop.LoggingAspect" />
+
+    <aop:config>
+
+        <aop:pointcut id="pointcut" expression="execution(* com.tian.service.StudentService.*(..))"></aop:pointcut>
+
+
+        <aop:aspect ref="loggingAspect" order="1">
+            <aop:before method="beforeMethod" pointcut-ref="pointcut"/>
+            <aop:after method="afterMethod" pointcut-ref="pointcut"/>
+            <aop:after-returning method="afterReturningMethod" pointcut-ref="pointcut"  returning="retVal"/>
+            <aop:after-throwing method="afterThrowingMethod" pointcut-ref="pointcut" throwing="ex"/>
+            <aop:around method="aroundMethod" pointcut-ref="pointcut" />
+        </aop:aspect>
+
+
+    </aop:config>
+
+
+ <!--   <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="iso-8859-1" />
+
+        &lt;!&ndash;设置“useCodeAsDefaultMessage”，默认为false，这样当Spring在ResourceBundle中找不到messageKey的话，
+        就抛出NoSuchMessageException，   把它设置为True，则找不到不会抛出异常，而是使用messageKey作为返回值。&ndash;&gt;
+        <property name="useCodeAsDefaultMessage" value="true" />
+        <property name="cacheSeconds" value="10"></property>
+        <property name="basenames">
+            <list>
+                <value>i18n.messages</value>
+            </list>
+        </property>
+    </bean>-->
+
+
+
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
     <context:property-placeholder location="classpath:database.properties"/>
@@ -55,5 +95,7 @@
 
     <!-- 配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
 
 </beans>
