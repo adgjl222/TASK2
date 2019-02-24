@@ -31,7 +31,7 @@
 
 
 <table align="center"  cellspacing='0'>
-<form action="${pageContext.request.contextPath}/student/listStudent" method="post">
+<form action="${pageContext.request.contextPath}/student/listStudent" method="get">
 			<span>
 				姓名：<input name="name" value="${name }"/> 
 
@@ -91,7 +91,7 @@
 
     <td>
 
-        <a href="${pageContext.request.contextPath}/student/${student.id}">修改改</a>
+        <a href="${pageContext.request.contextPath}/student/${student.id}">修改</a>
 
       <%--  <form action="${pageContext.request.contextPath}/student/${student.id}" method="get">
             <input type="submit" value="修改"/>

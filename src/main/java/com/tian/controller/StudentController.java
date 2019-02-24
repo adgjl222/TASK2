@@ -54,11 +54,11 @@ public class StudentController {
 
         Page page = new Page(pageNum,5,studentService.total(map));
         map.put("page",page);
-        if (page.getPageNum() <= 0 ){
+        if (page.getPageNum() <= 0 & pageNum > page.getTotalPages()){
             pageNum = 1;
         }
-        if(pageNum > page.getTotalPages()){
-            pageNum = page.getTotalPages();
+        else {
+            pageNum = page.getPageNum();
         }
 
         log.info("============page.getTotalPages is"+ page.getTotalPages()+ "pageNum is " + pageNum);

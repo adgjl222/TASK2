@@ -30,8 +30,9 @@ public class StudentDaoTest {
 
     @Test
     public void testSelectStudentById()throws Exception{
-        Integer id = 1;
-        Student student = studentDao.selectStudentById(id);
+        Integer id = 1333734;
+        log.info("===================="+id);
+        Student student = studentService.selectStudentById(id);
         log.info(student.toString());
     }
 
