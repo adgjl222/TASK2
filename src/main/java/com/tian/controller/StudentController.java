@@ -64,6 +64,7 @@ public class StudentController {
         log.info("============page.getTotalPages is"+ page.getTotalPages()+ "pageNum is " + pageNum);
 
 
+
         page = new Page(pageNum,5,studentService.total(map));
         map.put("page",page);
         log.info(""+map);
