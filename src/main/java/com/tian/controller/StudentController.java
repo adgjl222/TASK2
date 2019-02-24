@@ -1,6 +1,7 @@
 package com.tian.controller;
 
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.tian.dao.StudentMapper;
 import com.tian.model.Student;
 import com.tian.service.StudentService;
@@ -46,11 +47,23 @@ public class StudentController {
             map.put("name", name);
         }
         log.info(name);
-        if (pageNum == null){
+        if (pageNum == null ){
             pageNum = 1;
         }
-        Page page = new Page(pageNum,5,studentService.total(map));
+        log.info("====================目前pagenum为"+pageNum);
 
+        Page page = new Page(pageNum,5,studentService.total(map));
+        map.put("page",page);
+        if (page.getPageNum() <= 0 ){
+            pageNum = 1;
+        }
+        if(pageNum > page.getTotalPages()){
+            pageNum = page.getTotalPages();
+        }
+
+        log.info("============page.getTotalPages is"+ page.getTotalPages()+ "pageNum is " + pageNum);
+
+        page = new Page(pageNum,5,studentService.total(map));
         map.put("page",page);
         log.info(""+map);
         List<Student> namestudents = studentService.selectStudentByName(map);

@@ -38,7 +38,6 @@
 
     <select id="selectOne"  parameterType="Map" resultMap="studentResultMap">
       SELECT * FROM student WHERE  line_id = #{lineId} AND name = #{name}
-
     </select>
 
 
@@ -46,9 +45,8 @@
     <!-- 当有分页信息时候进行分页查询 -->
     <select id="list" resultMap="studentResultMap">
         SELECT * FROM student
+      limit 1,5
 
-            <!--limit #{page.start},#{page.count} -->
-            limit 1,5
     </select>
 
     <!-- total表中总行数 sql语句 -->
@@ -65,7 +63,6 @@
         </if>
         </where>
 
-            <!--limit #{page.start},#{page.count} -->
         limit #{page.beginRownum},5
 
 

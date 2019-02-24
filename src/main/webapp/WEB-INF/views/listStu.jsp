@@ -21,10 +21,12 @@
 
 <div id="jz">
 <table  align="center"  cellspacing='0'>
-    <form action="${pageContext.request.contextPath}/student/student" method="get" >
+   <%-- <form action="${pageContext.request.contextPath}/student/student" method="get" >
         <input type="submit" value="注册"/>
 
-    </form>
+    </form>--%>
+
+    <a href="${pageContext.request.contextPath}/student/student">注册</a>
     </table>
 
 
@@ -32,7 +34,8 @@
 <form action="${pageContext.request.contextPath}/student/listStudent" method="post">
 			<span>
 				姓名：<input name="name" value="${name }"/> 
-                <input type="hidden" name="pageNum" value="1"/>  
+
+                <input type="hidden" name="pageNum" value="1" />  
 				<input type="submit" value="查询" />
 			</span>
 </form>
@@ -86,9 +89,11 @@
 
     <td>
 
-        <form action="${pageContext.request.contextPath}/student/${student.id}" method="get">
+        <a href="${pageContext.request.contextPath}/student/${student.id}">修改改</a>
+
+      <%--  <form action="${pageContext.request.contextPath}/student/${student.id}" method="get">
             <input type="submit" value="修改"/>
-        </form>
+        </form>--%>
 
 
     <form action="${pageContext.request.contextPath}/student/${student.id}" method="post">
@@ -106,6 +111,9 @@
                 <a href="/student/listStudent?name=${name }&pageNum=1">首页</a>
                 <a href="/student/listStudent?name=${name }&pageNum=${page.pageNum - 1 }">上一页</a>
             </c:if>
+            <c:if test="${page.pageNum <= 1 }">
+                <a href="/student/listStudent?name=${name }&pageNum=1">首页</a>
+            </c:if>
             <c:forEach begin="1" end="${page.totalPages}" step="1" var="num">
                 <c:if test="${page.pageNum == num }">${num }</c:if>
                 <c:if test="${page.pageNum != num }">
@@ -116,7 +124,12 @@
                 <a href="/student/listStudent?name=${name }&pageNum=${page.pageNum + 1 }">下一页</a>
                 <a href="/student/listStudent?name=${name }&pageNum=${page.totalPages }">尾页</a>
             </c:if>
-            总${page.pageNum}/${page.totalPages }页
+            <c:if test="${page.pageNum <= 1 }">
+                总${1}/${page.totalPages }页
+            </c:if>
+            <c:if test="${page.pageNum >= page.totalPages }">
+                总${1}/${page.totalPages }页
+            </c:if>
         </td>
     </tr>
 </table>
