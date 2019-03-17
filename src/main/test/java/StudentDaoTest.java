@@ -45,7 +45,7 @@ public class StudentDaoTest {
         Map<String,Object> map = new HashMap<String, Object>();
         String name ="测";
         map.put("name",name);
-        Page page = new Page(1,5,studentDao.total(map));
+        Page page = new Page(1,5,studentDao.total());
         map.put("page",page);
         log.info(""+map);
 
@@ -61,14 +61,14 @@ public class StudentDaoTest {
     @Test
     public void testTotal()throws Exception{
         Map<String,Object> map = new HashMap<String, Object>();
-        int total = studentDao.total(map);
+        int total = studentDao.total();
         log.info(""+total);
     }
 
 
-    /**
+/*    *//**
      * 分页查询
-     */
+     *//*
     @Test
     public void testList()throws Exception{
         Map<String,Object> map = new HashMap<String, Object>();
@@ -82,7 +82,7 @@ public class StudentDaoTest {
         log.info("get student list BeginRownumis "+page.getBeginRownum()+" pageRows is "+page.getPageRows()+" get result size is " +lists.size());
 
 
-    }
+    }*/
 
 
 

@@ -36,18 +36,14 @@
          WHERE  ID = #{id}
      </delete>
 
-    <select id="selectOne"  parameterType="Map" resultMap="studentResultMap">
-      SELECT * FROM student WHERE  line_id = #{lineId} AND name = #{name}
-    </select>
 
-
-
-    <!-- 当有分页信息时候进行分页查询 -->
+<!--
+    &lt;!&ndash; 当有分页信息时候进行分页查询 &ndash;&gt;
     <select id="list" resultMap="studentResultMap">
         SELECT * FROM student
       limit 1,5
 
-    </select>
+    </select>-->
 
     <!-- total表中总行数 sql语句 -->
     <select id="total" resultType="int">

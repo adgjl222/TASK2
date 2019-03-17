@@ -30,18 +30,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-    @Override
-    public List <Student> selectAll() {
-        return studentDao.selectAll();
-    }
+
 
     @Override
-    public int total(Map<String,Object> map) {
-        return studentDao.total(map);
+    public int total() {
+        return studentDao.total();
     }
 
 
-    @Override
+/*    @Override
     public List <Student> list(Map<String,Object> map) {
         map.put("name","");
         Page page = new Page(1,5,studentDao.total(map));
@@ -53,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
 
         return lists;
 
-    }
+    }*/
 
 
     @Override

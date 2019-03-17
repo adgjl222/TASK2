@@ -34,7 +34,6 @@
 <form action="${pageContext.request.contextPath}/student/listStudent" method="get">
 			<span>
 				姓名：<input name="name" value="${name }"/> 
-
                 <input type="hidden" name="pageNum" value="1" />  
 				<input type="submit" value="查询" />
 			</span>

@@ -18,13 +18,11 @@ public interface StudentMapper {
         int deleteStudentById(Integer id);
 
 
-        List<Student> selectAll();
-
-        //根据分页查询数据
-        List<Student> list(Map<String,Object> map);
+/*        //根据分页查询数据
+        List<Student> list(Map<String,Object> map);*/
 
         //查询总行数
-        int total(Map<String,Object> map);
+        int total();
 
         List<Student> selectStudentByName(Map<String,Object> map);
 

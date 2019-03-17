@@ -26,12 +26,14 @@ public class Page {
      */
     private int endRownum;
 
+
     public Page(int pageNum, int pageRows, int totalRows) {
         this.pageNum = pageNum;
         this.pageRows = pageRows;
         this.totalRows = totalRows;
         // 计算总页数:总行数%每页行数==0?总行数/每页行数:总行数/每页行数+1
         this.totalPages = totalRows % pageRows == 0 ? totalRows / pageRows : (totalRows / pageRows) + 1;
+
         beginRownum = (pageNum - 1) * pageRows;
         endRownum = pageNum * pageRows;
     }
